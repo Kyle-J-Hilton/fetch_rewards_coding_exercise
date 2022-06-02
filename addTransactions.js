@@ -98,7 +98,6 @@ function transactionDataNodeList(){
     : [];
     nodelist.push(inputs);
     localStorage.setItem("list", JSON.stringify(nodelist));
-    console.log(nodelist);
     return nodelist;
 }
 
@@ -106,7 +105,6 @@ function transactionDataNodeList(){
 //fills in Array called transactionDetails
 function pushTransactionDetails(){
     const nodelist = transactionDataNodeList();
-    
     let transactionDetailsArr = Array.prototype.slice.call(nodelist);
     console.log(transactionDetailsArr);
  return transactionDetailsArr;
@@ -117,6 +115,7 @@ function pushTransactionDetails(){
 function sortingARR(){
     transactionDetailsArr = pushTransactionDetails();
     var sortedTransactionDetails = transactionDetailsArr.sort((a, b) => a.time - b.time)
+    console.log(sortedTransactionDetails);
         return sortedTransactionDetails;
 }
 
@@ -133,7 +132,7 @@ for (let i = 0; i < sortedTransactionDetails.length; i++) {
     let num = parseInt(obj.points);
     pointsValue.push(num);
     pointsToSpend -= num;
-console.log(num);
+
     if(pointsToSpend <= 0){
         pointsValue[i] = Math.abs(pointsToSpend);
         pointsToSpend = 0;
