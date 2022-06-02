@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Fetch Rewards coding exercise</title>
+    <!-- adds links for fonts, style sheets, and js scripts -->
+    <link href="https://fonts.googleapis.com/css?family=Amatic+SC|Raleway:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+    
+    <link rel="stylesheet" type="text/css" href="Styles.css">
+    
+  </head>
+<body onload="clearLocalMemory();" onload="setup();">
+
+  <!-- Web service main banner -->
+    <div class="banner-text">
+      <h1>Fetch</h1>
+      <h1>Rewards</h1>
+    </div>
+   
+   <div class="info-text">
+     <h2>Welcome to Fetch rewards account points tracker</h2>
+     <p>Follow the forms below to add transactions to the log, spend points, and calculate new account balances.</p>
+     </div>
+
+<!-- ADD transactions section -->
+     <table>
+        <tr>
+            <td>
+                <form onsubmit="event.preventDefault();onFormSubmit();" autocomplete="off" id="form1">
+                    <div>
+                        <label>Payer Name*</label><label class="validation-error hide" id="fullNameValidationError">This field is required.</label>
+                        <input type="text" name="payer" id="payer">
+                    </div>
+                    <div>
+                        <label>Points</label>
+                        <input type="text" name="pointsTotal" id="pointsTotal">
+                    </div>
+                    <div>
+                        <label>Timestamp</label>
+                        <input type="text" name="timestamp" id="timestamp">
+                    </div>
+                    <div  class="form-action-buttons">
+                        <input type="submit" value="Add">
+                    </div>
+                </form>
+            </td>
+            <td>
+                <table class="list" id="payerList">
+                    <thead>
+                        <tr>
+                            <th>Payer Name</th>
+                            <th>Transaction Total</th>
+                            <th>Timestamp</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+    </table>
+   
+
+<!-- creates section titles -->
+
+     <!-- spend points section --> 
+    <div class ="spend">
+    
+    <form onsubmit="event.preventDefault();onFormSubmit2();" autocomplete="off">
+        <div>
+            <label>Enter points to spend</label>
+            <input type="number" name="spendpoints" id="spendpoints">
+        </div>
+        
+        <table class="list" id="spendList">
+            <thead>
+                <tr>
+                    <th>Account Name Points Spent</th>
+                   
+                </tr>
+                <tr>
+                    <div  class="form-action-buttons">
+                        <input type="submit" value="Spend">
+                    </div>
+                </tr>
+            </thead>
+            <tbody id="table2">
+
+            </tbody>
+        </table>
+    </form>
+            
+            
+        </div>
+
+
+
+  <!-- check balance section -->
+  <div class="check-balance">
+    <input type="button" id="checkBALANCE" class="check-balance-button" value="Check current balances?" onclick="accountBalances()">
+    
+        <table class="list" id="checkBalanceList">
+            <thead>
+                <tr>
+                    <th>ACCOUNT NAME ACCOUNT BALANCE</th>
+                  
+                </tr>
+                <tr>
+                </tr>
+            </thead>
+            <tbody id="table3">
+
+            </tbody>
+        </table>
+    </input>
+
+   
+  </div>
+
+  
+<!-- footer -->
+  <div class="footer">
+    <h2>Fetch Rewards</h2>
+  </div>
+  <script src="addTransactions.js"></script>
+  </body>
+</html>

@@ -1,0 +1,246 @@
+body > table{
+    width: 80%;
+}
+
+table{
+    border-collapse: collapse;
+}
+table.list{
+    width:100%;
+}
+
+td, th {
+    border: 1px solid rgba(244, 208, 151, 0.6);
+    text-align: left;
+    padding: 8px;
+    font-family: 'Amatic SC',sans-serif;
+}
+tr:nth-child(even),table.list thead>tr {
+    background-color: rgba(244, 208, 151, 0.6);
+    font-family: 'Amatic SC',sans-serif;
+}
+
+input[type=text], input[type=number] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #0da43f;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-family: 'Amatic SC',sans-serif;
+}
+
+input[type=submit]{
+    width: 30%;
+    background-color: #0da43f;
+    color: #000;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: 'Amatic SC',sans-serif;
+}
+
+form div.form-action-buttons{
+    text-align: right;
+}
+
+a{
+    cursor: pointer;
+    text-decoration: underline;
+    color: #0000ee;
+    margin-right: 4px;
+}
+
+label.validation-error{
+    color:   red;
+    margin-left: 5px;
+}
+
+.hide{
+    display:none;
+}
+
+
+body{
+    background-color: #ffffff;
+    margin: 0px;
+    padding:0px;
+  }
+  
+  .banner-text{
+    position: flex;
+    top: 200px;
+  }
+  h1{
+    color: #2176FF;
+    font-family: 'Amatic SC',sans-serif;
+    font-size: 60px;
+    font-weight: 100;
+    letter-spacing: 2px;
+    margin: 0px;
+    text-align: center;
+    text-transform: uppercase;
+  }
+  h2{
+    color: #2176FF;
+    font-family: 'Amatic SC',sans-serif;
+    font-size: 30px;
+    margin: 0px;
+    text-align: center;
+    text-transform: uppercase;
+  }
+  p{
+    color: #09244e;
+    font-family: 'Amatic SC',sans-serif;
+    font-size: 25px;
+    margin: 0px;
+    text-align: center;
+    
+  }
+  .banner h2{
+    font-size: 120px;
+    margin: -40px 0px 60px 0px;
+  }
+  
+  .add-transaction{
+   display: grid;
+   align-items: center;
+  }
+  
+  .transactions {
+    margin-bottom: 10px;
+    padding: 40px 0px;
+    text-align: center;
+    display: block;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .spend{
+    margin-bottom: 10px;
+    padding: 40px 0px;
+    text-align: center;
+    display: block;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .check-balance{
+    margin-bottom: 10px;
+    padding: 40px 0px;
+    text-align: center;
+    display: block;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .activities-panel h2 {
+    width: 100%;
+  } 
+  
+  .spend-points{
+   
+  }
+
+  .add-transaction-button{
+    background-color: #0da43f;
+    box-sizing: border-box;
+    border-radius: 10%;
+    width: 240px;
+    height: 75px;
+    color: #fff;
+    font-family: 'Amatic SC',sans-serif;
+    font-size: 30px;
+    text-align: center;
+    text-transform: uppercase;
+    margin: 5px;
+    text-decoration: none;
+  }
+
+  .spend-points-button{
+    background-color: #0da43f;
+    box-sizing: border-box;
+    border-radius: 10%;
+    width: 240px;
+    height: 75px;
+    color: #fff;
+    font-family: 'Amatic SC',sans-serif;
+    font-size: 30px;
+    text-align: center;
+    text-transform: uppercase;
+    margin: 5px;
+    text-decoration: none;
+  }
+
+  .check-balance-button{
+    background-color: #0da43f;
+    box-sizing: border-box;
+    border-radius: 10%;
+    width: 240px;
+    height: 75px;
+    color: #fff;
+    font-family: 'Amatic SC',sans-serif;
+    font-size: 30px;
+    text-align: center;
+    text-transform: uppercase;
+    margin: 5px;
+    text-decoration: none;
+  }
+
+ 
+  .activity{
+    background-color: #0da43f;
+    box-sizing: border-box;
+    border-radius: 10%;
+    width: 240px;
+    height: 75px;
+    color: #fff;
+    font-family: 'Amatic SC',sans-serif;
+    font-size: 30px;
+    text-align: center;
+    text-transform: uppercase;
+    margin: 5px;
+    text-decoration: none;
+  }
+  .footer{
+    background-color: #2176FF;
+    padding: 30px;
+    text-align: center;
+  }
+  .footer h2{
+    color: #ffffff;
+    font-family: 'Raleway',sans-serif;
+    font-size: 14px;
+    font-weight: 100;
+    letter-spacing: 2px;
+  }
+  
+  .activity:hover {
+   background-color: #E0CA2D;
+   box-sizing: border-box;
+   width: 250px;
+   height: 76px;
+   font-size: 38px;
+    transition: background-color .2s ease-in;
+  }
+    
+  .activity:active {
+    font-size: 40px;
+    transition: font-size .1s;
+  }
+  
+  section{
+    max-width: 100vw;           /* replaced width: 300px; */
+    margin: 2vw auto;           /* added auto */
+    padding: 0 0 20px;
+    background: rgba(244, 208, 151, 0.6);
+    box-shadow: 2px 4px 25px rgba(178, 148, 101, 0.9);
+    border-radius: 10px;
+    color: #878;
+  }
