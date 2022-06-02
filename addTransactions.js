@@ -245,7 +245,7 @@ function accountBalances(){
         var newRow1 = table1.insertRow(table1.length);
     cell1 = newRow1.insertCell(0);
     cell1.innerHTML = transactionDetails[i];
- 
+    }
 }
 function insertNewRecord2(data1) {
     var formData2 = readFormData2();
@@ -260,9 +260,6 @@ function clearLocalMemory(){
     let nodelist = localStorage.getItem("list")
     ? JSON.parse(localStorage.getItem("list"))
     : [];
-    //nodelist = nodelist.fliter(function (item)
-    //  if(item.id !== id ) {
-     //     return item;
-     // });
     localStorage.removeItem("list");
+    nodelist = 0;
 }
