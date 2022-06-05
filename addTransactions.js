@@ -13,7 +13,8 @@ function onFormSubmit() {
         }
         else
             updateRecord(formData);
-    }}
+    }
+}
 
 //Reads user entered data and stores in formData
 function readFormData() {
@@ -24,7 +25,7 @@ function readFormData() {
     return formData;
 }
 
-//AddS user entered data to table, parameter is the form data
+//Adds user entered data to table, parameter is the form data
 function insertNewRecord(data) {
     var table = document.getElementById("payerList").getElementsByTagName('tbody')[0];
     var newRow = table.insertRow(table.length);
@@ -34,8 +35,6 @@ function insertNewRecord(data) {
     cell2.innerHTML = data.pointsTotal;
     cell3 = newRow.insertCell(2);
     cell3.innerHTML = data.timestamp;
-    cell4 = newRow.insertCell(3);
-    cell4.innerHTML = `<a onClick="onDelete(this)">Delete</a>`;
 }
 
 //Clears form info
@@ -53,14 +52,6 @@ function updateRecord(formData) {
     selectedRow.cells[2].innerHTML = formData.timestamp;
 }
 
-//deletes row if user presses delete button
-function onDelete(td) {
-    if (confirm('Are you sure to delete this record ?')) {
-        row = td.parentElement.parentElement;
-        document.getElementById("payerList").deleteRow(row.rowIndex);
-        resetForm();
-    }
-}
 
 //Makes sure form was filled in
 function validate() {
@@ -108,12 +99,49 @@ function pushTransactionDetails(){
 function sortingARR(){
     transactionDetailsArr = pushTransactionDetails();
     var sortedTransactionDetails = transactionDetailsArr.sort((a, b) => a.time - b.time);
-    console.log(sortedTransactionDetails);
         return sortedTransactionDetails;
 }
 
 
 //Spend Points Section
+
+//runs when spend points button is clicked
+function onFormSubmit2() {
+    let totalPoints = totalBalance();
+    if (validate2()) {
+        var sortedTransactionDetails = sortingARR();
+        console.table(sortedTransactionDetails);
+        insertNewRecord2(sortedTransactionDetails);
+    }else{
+        alert(`Invalid points entery!!! Please enter a Number less than the total points in all accounts: ${totalPoints}`);
+    }
+    }
+
+//read the user entered dated for points to spend
+function readFormData2() {
+    var formData2string = "";
+    formData2string = document.getElementById("spendpoints").value;
+    var formdata2 = parseInt(formData2string);
+    return formdata2;
+}
+
+//
+function validate2() {
+    let formdata2 = readFormData2();
+    let totalPoints = totalBalance();
+    if (document.getElementById("spendpoints").value == "") {
+        isValid = false;
+        document.getElementById("fullNameValidationError").classList.remove("hide");
+    }else if(formdata2 > totalPoints){
+        isValid = false;
+    } else {
+        isValid = true;
+        if (!document.getElementById("fullNameValidationError").classList.contains("hide"))
+            document.getElementById("fullNameValidationError").classList.add("hide");
+    }
+    return isValid;
+}
+
 
 //calculate each accounts indivdual balance before spending points
 function firstBalanceCalc(){
@@ -131,8 +159,17 @@ for(i=0;i<names.length;i++){
     if(currentObj.payer === currentName){
         balance[i] +=  currentPointsInt;
     }}}   
-console.log(balance);
     return balance;
+}
+
+//calculates total points between all accounts
+function totalBalance(){
+    let balanceArr = firstBalanceCalc();
+    let totalPoints = 0;
+    for(i=0;i<balanceArr.length;i++){
+        totalPoints += balanceArr[i];
+    }
+    return totalPoints;
 }
 
 
@@ -162,6 +199,7 @@ finalPointsSpentArr = accountNames.map(function (x, i){
 return finalPointsSpentArr;
 }
 
+
 //enter which points were spent into a table
 function insertNewRecord2(data1) {
     var formData2 = readFormData2();
@@ -177,55 +215,11 @@ function insertNewRecord2(data1) {
 }
 }
 
-//runs when button is clicked
-function onFormSubmit2() {
-    formData2 = readFormData2();
-    if (validate2()) {
-        var sortedTransactionDetails = sortingARR();
-        
-        if (selectedRow == null){
-            insertNewRecord2(sortedTransactionDetails);
-        }
-        else{
-            updateRecord2(formData2);
-        resetForm();
-        }}}
-
-//read the user entered dated for points to spend
-function readFormData2() {
-    var formData2 = "";
-     0;
-    formData2 = document.getElementById("spendpoints").value;
-    var formdata2 = parseInt(formData2);
-    console.log(formdata2);
-    console.log(formData2);
-    return formdata2;
-}
-
-
-//
-function updateRecord2(formData2) {
-    selectedRow.cells[0].innerHTML = formData2.spendpoints;
-}
-
-
-//
-function validate2() {
-    isValid = true;
-    if (document.getElementById("spendpoints").value == "") {
-        isValid = false;
-        document.getElementById("fullNameValidationError").classList.remove("hide");
-    } else {
-        isValid = true;
-        if (!document.getElementById("fullNameValidationError").classList.contains("hide"))
-            document.getElementById("fullNameValidationError").classList.add("hide");
-    }
-    return isValid;
-}
-
 
 // Check BALANCE SECTION 
-//function runs when check balance button is presses
+
+
+//runs when check balance button is presses
 function accountBalances(){
     insertNewRecord3();
 }
@@ -233,8 +227,21 @@ function accountBalances(){
 
 //Calculate the balance of each account 
 function calcFinalBalance(){
-    let preBalanceArr = firstBalanceCalc()
+    let preBalanceArr = firstBalanceCalc();
     let finalBalanceArr = [];
+    let pointsRemoved = calcPointsRemoved();
+    console.log(preBalanceArr);
+    console.log(pointsRemoved);
+    finalBalanceArr = preBalanceArr.map(function(item, i) {
+        return item - pointsRemoved[i];
+      })
+      console.log(finalBalanceArr);
+     return finalBalanceArr;
+}
+
+
+//calculates how many points were taken from each account
+function calcPointsRemoved(){
     let formData2 = readFormData2();
     let sortedArr = sortingARR();
     let arr = spendPointsCalc(formData2, sortedArr);
@@ -249,27 +256,24 @@ function calcFinalBalance(){
         let currentPointsInt = parseInt(currentPoints);
         if(currentObj.payer === currentName){
             pointsRemoved[i] +=  currentPointsInt;
-        }}}console.log(pointsRemoved);
-        for(k = 0; k < pointsRemoved; k++){
-            let bal = preBalanceArr[k] - pointsRemoved[k];
-            finalBalanceArr.push(bal); 
-        }
-        console.log(finalBalanceArr);
-        return finalBalanceArr;
+        }}}
+        return pointsRemoved;
 }
 
 
 //presents balances in table under check balances button
 function insertNewRecord3() {
     let finalbalance = calcFinalBalance();
+    let names = removeCopys();
     for(i=0;i<finalbalance.length;i++){
     var table1 = document.getElementById("checkBalanceList").getElementsByTagName('tbody')[0];
     var newRow = table1.insertRow(table1.length);
     let finalBal = finalbalance[i];
+    let namesI = names[i];
     cell1 = newRow.insertCell(0);
-    cell1.innerHTML = finalBal.payer;
+    cell1.innerHTML = namesI;
     cell2 = newRow.insertCell(1);
-    cell2.innerHTML = finalBal.points;
+    cell2.innerHTML = finalBal;
     }
 }
 
@@ -279,7 +283,7 @@ function clearLocalMemory(){
     ? JSON.parse(localStorage.getItem("list"))
     : [];
     localStorage.removeItem("list");
-    nodelist = 0;
+    nodelist = [];
 }
 
 //
@@ -312,10 +316,8 @@ function removeCopys(){
      }
      //check again if there was a match else end the loop
      if(result) {
-        console.log('found a match');
         check = true;
      } else {
-        console.log(`all payer names different`);
         check = false;
      }
     }

@@ -23,6 +23,9 @@
 
 <!-- ADD transactions section -->
      <table>
+         <thead>
+             <th>Enter info and press add to enter a transaction to the log.</th>
+         </thead>
         <tr>
             <td>
                 <form onsubmit="event.preventDefault();onFormSubmit();" autocomplete="off" id="form1">
@@ -75,9 +78,9 @@
             <p>Accounts balances cannot go below 0 points</p>
             <input type="number" name="spendpoints" id="spendpoints">
         </div>
-
+        <h3>The table below shows account name and points value removed from each account. If the removed value appears to be negative, it means that value was added to their balance instead.</h3>
         <table class="list" id="spendList">
-            <thead>
+            <thead     
                 <tr>
                     <th>Account Name</th>
                     <th>Points Removed</th>
