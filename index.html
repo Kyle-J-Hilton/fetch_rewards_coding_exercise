@@ -36,7 +36,7 @@
                     </div>
                     <div>
                         <label>Timestamp</label>
-                        <input type="text" name="timestamp" id="timestamp">
+                        <input type="datetime-local" name="timestamp" id="timestamp">
                     </div>
                     <div  class="form-action-buttons">
                         <input type="submit" value="Add">
@@ -69,18 +69,22 @@
     
     <form onsubmit="event.preventDefault();onFormSubmit2();" autocomplete="off">
         <div>
-            <label>Enter points to spend</label>
+            <label></label>
+            <p>How many points would you like to spend?</p>
+            <p>Points will always be taken from the oldest transactions first.</p>
+            <p>Accounts balances cannot go below 0 points</p>
             <input type="number" name="spendpoints" id="spendpoints">
         </div>
-        
+
         <table class="list" id="spendList">
             <thead>
                 <tr>
-                    <th>Account Name Points Spent</th>
+                    <th>Account Name</th>
+                    <th>Points Removed</th>
                    
                 </tr>
                 <tr>
-                    <div  class="form-action-buttons">
+                    <div  class="spend-points-button">
                         <input type="submit" value="Spend">
                     </div>
                 </tr>
@@ -98,13 +102,13 @@
 
   <!-- check balance section -->
   <div class="check-balance">
-    <input type="button" id="checkBALANCE" class="check-balance-button" value="Check current balances?" onclick="accountBalances()">
+    <input type="button" id="checkBALANCE" class="check-balance-button" value="Check Current Balances" onclick="accountBalances()">
     
         <table class="list" id="checkBalanceList">
             <thead>
                 <tr>
-                    <th>ACCOUNT NAME ACCOUNT BALANCE</th>
-                  
+                    <th>ACCOUNT NAME</th>
+                    <th>ACCOUNT BALANCE</th>
                 </tr>
                 <tr>
                 </tr>
